@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="club_logo">
+        <item>@drawable/img_acm</item>
+        <item>@drawable/img_arsenal</item>
+        <item>@drawable/img_barca</item>
+        <item>@drawable/img_bayern</item>
+        <item>@drawable/img_chelsea</item>
+        <item>@drawable/img_city</item>
+        <item>@drawable/img_madrid</item>
+        <item>@drawable/img_mu</item>
+    </integer-array>
+</resources>
