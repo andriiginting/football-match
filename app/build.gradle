@@ -29,6 +29,12 @@ ext {
     anko_version = '0.10.5'
     android_support = '28.0.0'
     glide_version = '4.8.0'
+    koinVersion = '0.9.3'
+    retrofitVersion = '2.3.0'
+    okhttpVersion = '3.10.0'
+    rxjavaVersion = '2.1.15'
+    rxKotlinAndroid = '2.1.0'
+    rxAndroidVersion = '2.0.2'
 }
 
 dependencies {
@@ -40,15 +46,25 @@ dependencies {
 
     implementation "org.jetbrains.anko:anko:$anko_version"
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
-
     implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
     implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
-
     implementation "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
     implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
-
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
     implementation "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinAndroid"
+
+
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-android-architecture:$koinVersion"
 
     implementation "com.github.bumptech.glide:glide:$glide_version"
 
