@@ -5,7 +5,7 @@ import com.example.andriginting.footballmatch.R
 import com.example.andriginting.footballmatch.model.ClubModel
 import com.example.andriginting.footballmatch.presenter.MainContract
 
-class ImpMainPresenter(view: MainContract.View,
+class ImpMainPresenter(private val view: MainContract.View,
                        private val context: Context,
                        private val list: ArrayList<ClubModel>) : MainContract.Presenter {
 
@@ -19,6 +19,7 @@ class ImpMainPresenter(view: MainContract.View,
                     clubDescription[items]))
         }
         icon.recycle()
+        view.hideLoadingIndicator()
         return list
     }
 
