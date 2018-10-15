@@ -10,8 +10,11 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 
 import com.example.andriginting.footballmatch.model.ClubModel
-import com.example.andriginting.footballmatch.view.FootbalItem
+import com.example.andriginting.footballmatch.view.detail.DetailActivity
+import com.example.andriginting.footballmatch.view.Main.component.FootbalItem
+import com.example.andriginting.footballmatch.view.detail.DetailActivity.Companion.DETAIL_CLUB
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.intentFor
 
 class MainFootballAdapter(val context: Context, val list: List<ClubModel>) : RecyclerView.Adapter<MainFootballAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
@@ -35,7 +38,7 @@ class MainFootballAdapter(val context: Context, val list: List<ClubModel>) : Rec
                     .load(data.clubLogo)
                     .into(imageClub)
             items.setOnClickListener {
-
+                itemView.context.startActivity(itemView.context.intentFor<DetailActivity>(DETAIL_CLUB to data))
             }
         }
     }
