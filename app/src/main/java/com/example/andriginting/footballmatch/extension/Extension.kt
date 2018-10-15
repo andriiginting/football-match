@@ -11,7 +11,3 @@ fun View.invisible() {
     visibility = View.INVISIBLE
 }
 
-fun <T> (() -> T).withDelay(delay: Long = 500L) {
-    Handler().postDelayed({ this.invoke() }, delay)
-}
-
