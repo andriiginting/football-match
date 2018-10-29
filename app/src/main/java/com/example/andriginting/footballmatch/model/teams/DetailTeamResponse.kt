@@ -1,4 +1,4 @@
-package com.example.andriginting.footballmatch.model
+package com.example.andriginting.footballmatch.model.teams
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

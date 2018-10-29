@@ -15,7 +15,7 @@ import com.example.andriginting.footballmatch.adapter.PreviousMatchAdapter
 import com.example.andriginting.footballmatch.extension.invisible
 import com.example.andriginting.footballmatch.extension.visible
 import com.example.andriginting.footballmatch.model.PrevMatchModel
-import com.example.andriginting.footballmatch.model.TeamDetailModel
+import com.example.andriginting.footballmatch.model.teams.TeamDetailModel
 
 class PrevMatchFragment : Fragment(), PrevContract.View {
 

@@ -1,4 +1,4 @@
-package com.example.andriginting.footballmatch.model
+package com.example.andriginting.footballmatch.model.teams
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

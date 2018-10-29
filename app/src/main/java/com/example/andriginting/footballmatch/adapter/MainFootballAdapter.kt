@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
-import com.example.andriginting.footballmatch.model.ClubModel
+import com.example.andriginting.footballmatch.model.teams.ClubModel
 import com.example.andriginting.footballmatch.view.detail.DetailActivity
 import com.example.andriginting.footballmatch.view.Main.component.FootbalItem
 import com.example.andriginting.footballmatch.view.detail.DetailActivity.Companion.DETAIL_CLUB

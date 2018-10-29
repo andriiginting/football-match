@@ -1,6 +1,6 @@
 package com.example.andriginting.footballmatch.view.Main
 
-import com.example.andriginting.footballmatch.model.ClubModel
+import com.example.andriginting.footballmatch.model.teams.ClubModel
 
 interface MainContract {
     interface View{

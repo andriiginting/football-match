@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.example.andriginting.footballmatch.R
-import com.example.andriginting.footballmatch.model.ClubModel
+import com.example.andriginting.footballmatch.model.teams.ClubModel
 
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
