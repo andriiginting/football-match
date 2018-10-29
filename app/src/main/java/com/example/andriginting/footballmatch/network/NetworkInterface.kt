@@ -1,6 +1,7 @@
 package com.example.andriginting.footballmatch.network
 
 import com.example.andriginting.footballmatch.model.LeagueResponse
+import com.example.andriginting.footballmatch.model.league.ListLeagueResponse
 import com.example.andriginting.footballmatch.model.teams.TeamResponse
 import io.reactivex.Observable
 import retrofit2.Response
@@ -17,6 +18,9 @@ interface NetworkInterface {
 
     @GET("lookupteam.php")
     fun getDetailTeam(@Query("id") teamId: String): Observable<Response<TeamResponse>>
+
+    @GET("all_leagues.php")
+    fun getAllListOfLeague(): Observable<Response<ListLeagueResponse>>
 
     @GET()
     fun getDetailPlayer(@Query("id") playerId: String)
