@@ -1,10 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.andriginting.footballmatch.view.Main.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/tab_match"
+        android:icon="@drawable/score_board"
+        android:title="@string/tab_match" />
+    <item
+        android:id="@+id/tab_team"
+        android:icon="@drawable/calendar"
+        android:title="@string/tab_teams" />
+    <item android:id="@+id/tab_fav_match"
+        android:icon="@drawable/fav_icon"
+        android:title="@string/favorite_match"/>
+
 </menu>

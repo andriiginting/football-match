@@ -1,4 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="margin_standard_10">10dp</dimen>
+    <dimen name="padding_standard_15">15dp</dimen>
+    <dimen name="logo_size_80">80dp</dimen>
+    <dimen name="image_size_100">100dp</dimen>
+    <dimen name="padding_standard_5">5dp</dimen>
+    <dimen name="drawable_size_24">24dp</dimen>
 </resources>

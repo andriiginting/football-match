@@ -7,12 +7,9 @@ import com.example.andriginting.footballmatch.R
 import com.example.andriginting.footballmatch.adapter.MainFootballAdapter
 import com.example.andriginting.footballmatch.extension.invisible
 import com.example.andriginting.footballmatch.extension.visible
-import com.example.andriginting.footballmatch.extension.withDelay
 import com.example.andriginting.footballmatch.model.ClubModel
-import com.example.andriginting.footballmatch.presenter.MainContract
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 

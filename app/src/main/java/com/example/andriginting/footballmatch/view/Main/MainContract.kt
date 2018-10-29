@@ -1,4 +1,4 @@
-package com.example.andriginting.footballmatch.presenter
+package com.example.andriginting.footballmatch.view.Main
 
 import com.example.andriginting.footballmatch.model.ClubModel
 

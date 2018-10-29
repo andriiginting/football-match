@@ -3,7 +3,6 @@ package com.example.andriginting.footballmatch.view.Main
 import android.content.Context
 import com.example.andriginting.footballmatch.R
 import com.example.andriginting.footballmatch.model.ClubModel
-import com.example.andriginting.footballmatch.presenter.MainContract
 
 class ImpMainPresenter(private val view: MainContract.View,
                        private val context: Context,

@@ -16,7 +16,9 @@ import com.example.andriginting.footballmatch.view.detail.DetailActivity.Compani
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.intentFor
 
-class MainFootballAdapter(val context: Context, val list: List<ClubModel>) : RecyclerView.Adapter<MainFootballAdapter.ViewHolder>() {
+class MainFootballAdapter(val context: Context, val list: List<ClubModel>) :
+        RecyclerView.Adapter<MainFootballAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
         return ViewHolder(FootbalItem().createView(AnkoContext.create(parent.context, parent)))
     }

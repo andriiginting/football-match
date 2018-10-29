@@ -7,16 +7,16 @@ import org.jetbrains.anko.*
 
 class FootbalItem : AnkoComponent<ViewGroup> {
     companion object {
-        val linearItem = 1
-        val imageClubItem = 2
-        val textCLubName = 3
+        const val linearItem = 1
+        const val imageClubItem = 2
+        const val textCLubName = 3
     }
 
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
         linearLayout {
             id = linearItem
             padding = dip(10)
-            gravity =Gravity.CENTER_VERTICAL
+            gravity = Gravity.CENTER_VERTICAL
             imageView(R.drawable.img_barca) {
                 id = imageClubItem
             }.lparams(width = 120, height = 120) {

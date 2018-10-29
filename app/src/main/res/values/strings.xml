@@ -26,4 +26,23 @@
     </string-array>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="description_hint">description</string>
+    <string name="title_activity_match_schedule">Football Match</string>
+    <string name="next_match">Next Match</string>
+    <string name="previous_match">Previous Match</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="score_hint">5</string>
+    <string name="away_score">0</string>
+    <string name="date_hint">date</string>
+    <string name="title_activity_detail_match">DetailMatchActivity</string>
+    <string name="goals">Goals</string>
+    <string name="shots">Total Shots</string>
+    <string name="warning">Warning</string>
+    <string name="favorite_match">Favorites</string>
+    <string name="no_matches_saved">NO MATCHES SAVED</string>
+    <string name="fav_match_title">Favorite Match</string>
+    <string name="prev_match">Previous Match</string>
+    <string name="tab_match">Match</string>
+    <string name="tab_teams">Teams</string>
 </resources>

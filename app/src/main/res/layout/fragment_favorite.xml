@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.match.fav.FavoriteFragment">
+
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/recycler_fav_match"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <include layout="@layout/no_matches_saved_layout"
+        android:visibility="invisible"/>
+</RelativeLayout>

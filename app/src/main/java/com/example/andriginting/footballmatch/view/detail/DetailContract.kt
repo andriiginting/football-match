@@ -1,4 +1,4 @@
-package com.example.andriginting.footballmatch.presenter
+package com.example.andriginting.footballmatch.view.detail
 
 interface DetailContract {
     interface View{
