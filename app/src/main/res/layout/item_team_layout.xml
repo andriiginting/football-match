@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_10">
+
+    <ImageView
+        android:id="@+id/image_team_logo"
+        android:layout_width="@dimen/image_size_50"
+        android:layout_height="@dimen/image_size_50"
+        android:src="@drawable/img_barca"/>
+
+    <TextView
+        android:id="@+id/text_teams_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/team_name_hint"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/margin_standard_10"
+        />
+</LinearLayout>
