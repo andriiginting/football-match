@@ -1,13 +1,12 @@
 package com.example.andriginting.footballmatch.view.teams
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 
 import com.example.andriginting.footballmatch.R
@@ -16,14 +15,23 @@ import com.example.andriginting.footballmatch.extension.invisible
 import com.example.andriginting.footballmatch.extension.visible
 import com.example.andriginting.footballmatch.model.league.LeagueModel
 import com.example.andriginting.footballmatch.model.teams.TeamModel
+import com.example.andriginting.footballmatch.model.teams.TeamResponse
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Function
+import org.jetbrains.anko.support.v4.toast
+import retrofit2.Response
+
+import java.util.concurrent.TimeUnit
 
 class TeamFragment : Fragment(), TeamContract.View {
-
     private lateinit var recycler: RecyclerView
     private lateinit var spinnerLeague: Spinner
     private lateinit var progbar: ProgressBar
 
-    private var adapter: TeamsAdapter? = null
+    private var teamAdapter: TeamsAdapter? = null
     private lateinit var listTeam: ArrayList<TeamModel>
     private lateinit var listLeague: ArrayList<LeagueModel>
     private lateinit var listLeagueName: ArrayList<String>
@@ -45,40 +53,75 @@ class TeamFragment : Fragment(), TeamContract.View {
         listLeagueName = ArrayList()
 
         presenter.getListOfLeagueTeam(listLeague)
+        teamAdapter = TeamsAdapter(listTeam)
 
         setupSpinner()
-        spinnerLeague.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == 0) {
-
-                } else {
-                    listTeam = presenter.getListOfTeam(listLeague[position].leagueId.toInt(), listTeam)
-                }
-                adapter?.notifyDataSetChanged()
-            }
-        }
-        adapter = TeamsAdapter(presenter.getListOfTeam(4328, listTeam))
-
         setupComponent()
-
+        setHasOptionsMenu(true)
         return view
     }
 
+    @SuppressLint("CheckResult")
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu_search, menu)
+
+        val searchItem = menu?.findItem(R.id.search_menu)
+        val searchView = searchItem?.actionView as SearchView
+        searchView.queryHint = getString(R.string.find_team)
+
+        Observable.create(ObservableOnSubscribe<String> { subscriber ->
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    subscriber.onNext(newText!!)
+                    return true
+                }
+
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    subscriber.onNext(query!!)
+                    return true
+                }
+            })
+        })
+                .map { text -> text.toLowerCase().trim() }
+                .debounce(300, TimeUnit.MILLISECONDS)
+                .distinctUntilChanged()
+                .filter { text -> text.isNotBlank() }
+                .switchMapSingle(Function<String, Single<Response<TeamResponse>>> {
+                    return@Function presenter.searchTeam(it, listTeam)
+                })
+                .subscribeWith(presenter.getSearchObserver())
+
+    }
+
     override fun setupSpinner() {
-        val adapter: ArrayAdapter<String> = ArrayAdapter(context,
+        val adapter: ArrayAdapter<String> = ArrayAdapter(activity!!.baseContext,
                 android.R.layout.simple_spinner_item, listLeagueName)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerLeague.adapter = adapter
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.addAll("Choose League")
+        spinnerLeague.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val items = parent?.selectedItem.toString()
+                listTeam.clear()
+                if (position != 0) {
+                    presenter.getListOfTeam(listLeague[position - 1].leagueId.toInt(), listTeam)
+                    teamAdapter?.notifyDataSetChanged()
+                }
+                toast("$items $position")
+            }
+        }
         adapter.notifyDataSetChanged()
     }
 
     override fun setupComponent() {
         recycler.layoutManager = LinearLayoutManager(context)
-        recycler.adapter = adapter
-        adapter?.notifyDataSetChanged()
+        recycler.adapter = teamAdapter
+        teamAdapter?.notifyDataSetChanged()
     }
 
     override fun hideLoadingIndicator() {
@@ -93,9 +136,8 @@ class TeamFragment : Fragment(), TeamContract.View {
         listLeagueName.add(data)
     }
 
-    override fun populateTeamData(data: TeamModel) {
-        listTeam.clear()
-        listTeam.add(data)
-        adapter?.notifyDataSetChanged()
+    override fun populateTeamData(data: List<TeamModel>) {
+        listTeam.addAll(data)
+        teamAdapter?.notifyDataSetChanged()
     }
 }

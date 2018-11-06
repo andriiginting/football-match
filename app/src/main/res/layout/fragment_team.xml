@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_standard_10"
+        android:spinnerMode="dialog"
         android:padding="@dimen/padding_standard_15"/>
 
     <android.support.v7.widget.RecyclerView

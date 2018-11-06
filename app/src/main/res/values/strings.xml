@@ -57,4 +57,6 @@
     <string name="weight_hint">Weight (kg)</string>
     <string name="height_hint">Height (m)</string>
     <string name="text_weight_sample">65</string>
+    <string name="search_hint">Search</string>
+    <string name="find_team">Cari Team Favorite mu</string>
 </resources>

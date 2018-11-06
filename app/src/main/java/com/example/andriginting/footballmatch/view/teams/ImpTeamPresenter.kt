@@ -1,14 +1,20 @@
 package com.example.andriginting.footballmatch.view.teams
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.example.andriginting.footballmatch.model.league.LeagueModel
 import com.example.andriginting.footballmatch.model.teams.TeamModel
+import com.example.andriginting.footballmatch.model.teams.TeamResponse
 import com.example.andriginting.footballmatch.network.NetworkInterface
 import com.example.andriginting.footballmatch.network.NetworkModule
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Response
 
 class ImpTeamPresenter(val view: TeamContract.View) : TeamContract.Presenter {
+
 
     private var request = NetworkModule().getRetrofitClient()?.create(NetworkInterface::class.java)
 
@@ -30,8 +36,8 @@ class ImpTeamPresenter(val view: TeamContract.View) : TeamContract.Presenter {
                                         response.body()?.teams?.get(items)?.teamStadium.toString(),
                                         response.body()?.teams?.get(items)?.teamDescription.toString()
                                 ))
-                                view.populateTeamData(list[items])
                             }
+                            view.populateTeamData(list)
                             view.hideLoadingIndicator()
                         }
                     }
@@ -63,5 +69,39 @@ class ImpTeamPresenter(val view: TeamContract.View) : TeamContract.Presenter {
                     error.localizedMessage
                 })
         return list
+    }
+
+    @SuppressLint("CheckResult")
+    override fun searchTeam(teamName: String, list: ArrayList<TeamModel>): Single<Response<TeamResponse>>? {
+        return request?.searchTeamByName(teamName)
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun getSearchObserver(): DisposableObserver<Response<TeamResponse>> {
+        return object : DisposableObserver<Response<TeamResponse>>() {
+            override fun onComplete() {
+                Log.d("data-completed","Completed Fetch")
+            }
+
+            override fun onNext(t: Response<TeamResponse>) {
+                val listData: ArrayList<TeamModel> = ArrayList()
+                for (item in t.body()?.teams!!.indices) {
+                    val dataTeamModel = TeamModel(t.body()!!.teams?.get(item)?.idTeam.toString(),
+                            t.body()!!.teams?.get(item)?.teamName.toString(),
+                            t.body()!!.teams?.get(item)?.teamFormed.toString(),
+                            t.body()!!.teams?.get(item)?.teamBadge.toString(),
+                            t.body()!!.teams?.get(item)?.teamStadium.toString(),
+                            t.body()!!.teams?.get(item)?.teamDescription.toString())
+                    listData.add(dataTeamModel)
+                }
+                view.populateTeamData(listData)
+            }
+
+            override fun onError(e: Throwable) {
+                Log.e("error-search",e.message)
+            }
+
+        }
     }
 }

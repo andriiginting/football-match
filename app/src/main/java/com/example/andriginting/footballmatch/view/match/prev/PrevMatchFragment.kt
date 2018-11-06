@@ -61,6 +61,7 @@ class PrevMatchFragment : Fragment(), PrevContract.View {
     }
 
     override fun showFootBallSchedule(data: ArrayList<PrevMatchModel>) {
+        list?.clear()
         list = data
         adapter?.notifyDataSetChanged()
     }
