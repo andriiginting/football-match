@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/padding_10">
+    <ImageView
+        android:id="@+id/image_club_logo_detail"
+        android:layout_width="@dimen/image_size_100"
+        android:layout_height="@dimen/image_size_100"
+        android:src="@drawable/img_barca"
+        />
+    <TextView
+        android:id="@+id/text_club_name_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/barcelona"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_18"
+        />
+
+    <TextView
+        android:id="@+id/text_club_year_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/year_hint"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_18"
+        />
+    <TextView
+        android:id="@+id/text_club_stadium_name_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/camp_nou"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_18"
+        />
+</LinearLayout>

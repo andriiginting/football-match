@@ -2,80 +2,39 @@ package com.example.andriginting.footballmatch.view.match.fav
 
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.ProgressBar
 
 import com.example.andriginting.footballmatch.R
-import com.example.andriginting.footballmatch.adapter.FavoriteMatchAdapter
-import com.example.andriginting.footballmatch.db.FootballDB
-import com.example.andriginting.footballmatch.extension.invisible
-import com.example.andriginting.footballmatch.extension.visible
-
-class FavoriteFragment : Fragment(), FavoriteContract.View {
+import com.example.andriginting.footballmatch.adapter.ViewPagerAdapter
+import com.example.andriginting.footballmatch.view.match.BasePagerView
+import com.example.andriginting.footballmatch.view.teams.TeamFragment
 
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var noFavMatch: LinearLayout
+class FavoriteFragment : Fragment(), BasePagerView {
 
-    private lateinit var list: ArrayList<FootballDB>
-    private lateinit var adapter: FavoriteMatchAdapter
-    private lateinit var presenter: ImpFavoritePresenter
-
+    private lateinit var favTabs: TabLayout
+    private lateinit var favPager: ViewPager
+    private lateinit var pagerAdapter: ViewPagerAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_favorite, container, false)
-        activity?.actionBar?.title = getString(R.string.fav_match_title)
-        recyclerView = view.findViewById(R.id.recycler_fav_match)
-        progressBar = view.findViewById(R.id.progress_bar_fav)
-        noFavMatch = view.findViewById(R.id.no_match_saved)
+        val view = inflater.inflate(R.layout.fragment_favorite_team, container, false)
+        favTabs = view.findViewById(R.id.tablayout_fav)
+        favPager = view.findViewById(R.id.viewpager_fav)
 
-        list = ArrayList()
-        adapter = context?.let { FavoriteMatchAdapter(list, it) }!!
-        presenter = ImpFavoritePresenter(this, context!!)
-
-        presenter.getFavoriteMatch()
-        initComponent()
+        pagerAdapter = ViewPagerAdapter(childFragmentManager)
+        setupViewPager(favPager)
+        favTabs.setupWithViewPager(favPager)
         return view
     }
 
-    override fun initComponent() {
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        val itemDecorator = DividerItemDecoration(context, RecyclerView.VERTICAL)
-        recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(itemDecorator)
-    }
-
-    override fun showLoadingIndicator() {
-        progressBar.visible()
-        recyclerView.invisible()
-    }
-
-    override fun hideLoadingIndicator() {
-        progressBar.invisible()
-        recyclerView.visible()
-    }
-
-    override fun showListFavMatch(data: List<FootballDB>) {
-        list.addAll(data)
-        adapter.notifyDataSetChanged()
-    }
-
-    override fun showNoFavoriteMatch() {
-        noFavMatch.visible()
-        recyclerView.invisible()
-    }
-
-    override fun hideNoFavoriteMatch() {
-        noFavMatch.invisible()
-        recyclerView.visible()
+    override fun setupViewPager(viewPager: ViewPager) {
+        pagerAdapter.addFragment(FavoriteMatchFragment(),"Match")
+        pagerAdapter.addFragment(FavTeamFragment(),"Team")
+        favPager.adapter = pagerAdapter
     }
 }

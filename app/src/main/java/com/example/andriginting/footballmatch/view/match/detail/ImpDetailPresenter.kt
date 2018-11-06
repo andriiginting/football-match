@@ -4,24 +4,24 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import android.util.Log
-import com.example.andriginting.footballmatch.db.FootballDB
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.AWAY_RED_CARD
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.AWAY_SCORE
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.AWAY_TEAM_ID
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.AWAY_TEAM_NAME
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.AWAY_TOTAL_SHOT
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.AWAY_YELLOW_CARD
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.HOME_RED_CARD
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.HOME_SCORE
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.HOME_TEAM_ID
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.HOME_TEAM_NAME
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.HOME_TOTAL_SHOT
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.HOME_YELLOW_CARD
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.MATCH_BANNER
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.MATCH_DATE
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.MATCH_ID
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.MATCH_LEAGUE
-import com.example.andriginting.footballmatch.db.FootballDB.Companion.TABLE_MATCH_NAME
+import com.example.andriginting.footballmatch.db.FootballMatchDB
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.AWAY_RED_CARD
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.AWAY_SCORE
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.AWAY_TEAM_ID
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.AWAY_TEAM_NAME
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.AWAY_TOTAL_SHOT
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.AWAY_YELLOW_CARD
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.HOME_RED_CARD
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.HOME_SCORE
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.HOME_TEAM_ID
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.HOME_TEAM_NAME
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.HOME_TOTAL_SHOT
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.HOME_YELLOW_CARD
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH_BANNER
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH_DATE
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH_ID
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH_LEAGUE
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.TABLE_MATCH_NAME
 import com.example.andriginting.footballmatch.extension.databaseHelper
 import com.example.andriginting.footballmatch.model.PrevMatchModel
 import com.example.andriginting.footballmatch.network.NetworkInterface
@@ -42,7 +42,7 @@ class ImpDetailPresenter(private val view: DetailMatchContract.View,
             .getRetrofitClient()?.create(NetworkInterface::class.java)
 
     @SuppressLint("CheckResult")
-    override fun getHomeBadge(homeTeamId: String) {
+    override fun getHomeBadge(homeTeamId: Int) {
         request?.getDetailTeam(homeTeamId)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
@@ -50,7 +50,7 @@ class ImpDetailPresenter(private val view: DetailMatchContract.View,
                     val team = it.body()?.teams?.get(0)
                     when {
                         it.isSuccessful -> {
-                            team?.teamBadge?.let { it1 -> view.setHomeClubLogo(it1) }
+                            team?.teamBadge?.let { response -> view.setHomeClubLogo(response) }
                             Log.d("badge-club", team?.teamBadge.toString())
                         }
                     }
@@ -64,7 +64,7 @@ class ImpDetailPresenter(private val view: DetailMatchContract.View,
     }
 
     @SuppressLint("CheckResult")
-    override fun getAwayBadge(awayTeamId: String) {
+    override fun getAwayBadge(awayTeamId: Int) {
         request?.getDetailTeam(awayTeamId)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
@@ -127,7 +127,7 @@ class ImpDetailPresenter(private val view: DetailMatchContract.View,
         var fav = false
         context.databaseHelper.use {
             val res = select(TABLE_MATCH_NAME).whereArgs("(MATCH_ID = {id})", "id" to data.matchId)
-            val favMatch = res.parseList(classParser<FootballDB>())
+            val favMatch = res.parseList(classParser<FootballMatchDB>())
             fav = favMatch.isNotEmpty()
         }
         return fav

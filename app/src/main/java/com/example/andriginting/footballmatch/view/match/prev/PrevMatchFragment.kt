@@ -26,7 +26,6 @@ class PrevMatchFragment : Fragment(), PrevContract.View {
     private var adapter: PreviousMatchAdapter? = null
 
     private var list: ArrayList<PrevMatchModel>? = null
-    private var listTeam: ArrayList<TeamDetailModel>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

@@ -13,32 +13,30 @@ import java.util.ArrayList
 
 class PrevEventTest {
     @Mock
-    private lateinit var nextView: PrevContract.View
+    lateinit var nextView: PrevContract.View
     @Mock
-    private lateinit var presenter: ImpPreviousPresenter
+    lateinit var presenter: ImpPreviousPresenter
     @Mock
     lateinit var model: PrevMatchModel
+    @Mock
     lateinit var list: ArrayList<PrevMatchModel>
 
     @Before
     fun setupTest() {
+        MockitoAnnotations.initMocks(this)
         model = Mockito.mock(PrevMatchModel::class.java)
         nextView = Mockito.mock(PrevContract.View::class.java)
         list = ArrayList()
         presenter = ImpPreviousPresenter(view = nextView, list = list)
-        MockitoAnnotations.initMocks(this)
     }
 
     @Test
     fun getNextMatchDetailSpec_hasNoData() {
+        `when`(presenter.getMatchDetail(0)).thenReturn(null)
 
-        val leagueId = 4335
-        `when`(presenter.getMatchDetail(leagueId)).thenCallRealMethod()
-
-        Mockito.verify(nextView, Mockito.never()).showLoadingIndicator()
-        Mockito.verify(nextView, Mockito.never()).showFootBallSchedule(list)
-        Mockito.verify(nextView, Mockito.never()).hidLoadingIndicator()
-
+        Mockito.verify(nextView).showLoadingIndicator()
+        Mockito.verify(nextView).showFootBallSchedule(list)
+        Mockito.verify(nextView).hidLoadingIndicator()
     }
 
 }

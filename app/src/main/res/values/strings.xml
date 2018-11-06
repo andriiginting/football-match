@@ -40,9 +40,21 @@
     <string name="shots">Total Shots</string>
     <string name="warning">Warning</string>
     <string name="favorite_match">Favorites</string>
-    <string name="no_matches_saved">NO MATCHES SAVED</string>
+    <string name="no_matches_saved">NO MATCHES or TEAM SAVED</string>
     <string name="fav_match_title">Favorite Match</string>
     <string name="prev_match">Previous Match</string>
     <string name="tab_match">Match</string>
     <string name="tab_teams">Teams</string>
+    <string name="team_name_hint">Teams Name</string>
+    <string name="choose_league">Choose League</string>
+    <string name="title_activity_team_detail">TeamDetailActivity</string>
+    <string name="barcelona">Barcelona</string>
+    <string name="year_hint">1899</string>
+    <string name="camp_nou">Camp Nou</string>
+    <string name="player_hint">Lionel Messi</string>
+    <string name="position_player">Forward</string>
+    <string name="title_activity_player">PlayerActivity</string>
+    <string name="weight_hint">Weight (kg)</string>
+    <string name="height_hint">Height (m)</string>
+    <string name="text_weight_sample">65</string>
 </resources>

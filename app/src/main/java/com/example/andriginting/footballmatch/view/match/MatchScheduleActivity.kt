@@ -9,8 +9,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity;
 import com.example.andriginting.footballmatch.R
 import com.example.andriginting.footballmatch.view.match.fav.FavoriteFragment
-import com.example.andriginting.footballmatch.view.match.next.NextMatchFragment
-import com.example.andriginting.footballmatch.view.match.prev.PrevMatchFragment
+import com.example.andriginting.footballmatch.view.teams.TeamFragment
 
 import kotlinx.android.synthetic.main.activity_match_schedule.*
 import kotlinx.android.synthetic.main.content_match_schedule.*
@@ -21,7 +20,6 @@ class MatchScheduleActivity : AppCompatActivity(), MatchContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_schedule)
         setSupportActionBar(toolbar)
-        supportActionBar?.elevation = 0f
 
         bottom_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         bottom_navigation.selectedItemId = R.id.tab_match
@@ -39,7 +37,7 @@ class MatchScheduleActivity : AppCompatActivity(), MatchContract.View {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.tab_team -> {
-                val fragment = NextMatchFragment()
+                val fragment = TeamFragment()
                 addFragment(fragment)
                 lastSelected = item.itemId
                 return@OnNavigationItemSelectedListener true

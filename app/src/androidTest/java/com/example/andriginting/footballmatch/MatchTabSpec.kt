@@ -32,7 +32,9 @@ class MatchTabSpec {
     @Test
     fun testSwipePager(){
         onView(withId(R.id.viewpager_match)).check(matches(isDisplayed()))
+        Thread.sleep(3000)
         onView(withId(R.id.viewpager_match)).perform(swipeLeft())
+        Thread.sleep(3000)
         onView(withId(R.id.viewpager_match)).perform(swipeRight())
     }
 }

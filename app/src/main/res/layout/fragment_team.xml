@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.teams.TeamFragment">
+
+    <Spinner
+        android:id="@+id/spinner_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_standard_10"
+        android:padding="@dimen/padding_standard_15"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_teams"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_team_layout"
+        android:layout_below="@id/spinner_team"/>
 
-</FrameLayout>
+    <ProgressBar
+        android:id="@+id/progress_bar_teams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>

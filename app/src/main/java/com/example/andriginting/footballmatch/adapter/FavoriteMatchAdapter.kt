@@ -1,7 +1,6 @@
 package com.example.andriginting.footballmatch.adapter
 
 import android.content.Context
-import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.andriginting.footballmatch.R
-import com.example.andriginting.footballmatch.db.FootballDB
+import com.example.andriginting.footballmatch.db.FootballMatchDB
 import com.example.andriginting.footballmatch.model.MatchStat
 import com.example.andriginting.footballmatch.model.PrevMatchModel
 import com.example.andriginting.footballmatch.model.Team
@@ -18,7 +17,7 @@ import com.example.andriginting.footballmatch.utils.StringsUtils.Companion.trans
 import com.example.andriginting.footballmatch.view.match.detail.DetailMatchActivity
 import org.jetbrains.anko.intentFor
 
-class FavoriteMatchAdapter(private val list: ArrayList<FootballDB>,
+class FavoriteMatchAdapter(private val list: ArrayList<FootballMatchDB>,
                            private val context: Context) : RecyclerView.Adapter<FavoriteMatchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
@@ -42,9 +41,7 @@ class FavoriteMatchAdapter(private val list: ArrayList<FootballDB>,
         private var items: LinearLayout = itemView.findViewById(R.id.item_fav)
 
 
-        fun bindData(data: FootballDB) {
-
-
+        fun bindData(data: FootballMatchDB) {
             scoreHome.text = data.homeGoals?.toInt()?.let { transformNull(it) }
             scoreAway.text = data.awayGoals?.toInt()?.let { transformNull(it) }
             clubNameHome.text = data.homeTeamName

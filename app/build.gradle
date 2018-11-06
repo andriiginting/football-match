@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -23,10 +24,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
 }
 androidExtensions {
     experimental = true
 }
+
+
 
 ext {
     anko_version = '0.10.5'
@@ -70,7 +76,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinAndroid"
-    implementation "com.jakewharton.rxbinding3:rxbinding:$rxBinding"
+    implementation "com.jakewharton.rxbinding:rxbinding:0.4.0"
 
     implementation 'android.arch.lifecycle:extensions:1.1.1'
 

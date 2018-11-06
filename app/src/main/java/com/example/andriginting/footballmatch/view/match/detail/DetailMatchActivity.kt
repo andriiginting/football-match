@@ -45,8 +45,8 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchContract.View {
         setSubTitleOnToolbar(dateMatch = data?.dateMatch.toString())
 
         presenter = ImpDetailPresenter(this, applicationContext)
-        presenter.getHomeBadge(data?.homeTeam?.teamId.toString())
-        presenter.getAwayBadge(data?.awayTeam?.teamId.toString())
+        presenter.getHomeBadge(data?.homeTeam?.teamId!!.toInt())
+        presenter.getAwayBadge(data?.awayTeam?.teamId!!.toInt())
         isFav = presenter.favMatchState(data!!)
 
         setDetailMatch(data!!)

@@ -29,7 +29,7 @@ class BaseMatchFragment : Fragment(), BasePagerView {
         tabs = view.findViewById(R.id.tablayout_match)
         pager = view.findViewById(R.id.viewpager_match)
 
-        pagerAdapter = fragmentManager?.let { ViewPagerAdapter(it) }!!
+        pagerAdapter = ViewPagerAdapter(childFragmentManager)
         setupViewPager(pager)
         tabs.setupWithViewPager(pager)
         return view

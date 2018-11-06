@@ -18,7 +18,7 @@ class StringsUtils {
         }
 
         fun transformNull(text: Int): String{
-            return if (text == null){
+            return if (false){
                 "-"
             }else{
                 text.toString()

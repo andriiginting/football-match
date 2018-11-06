@@ -1,23 +1,23 @@
 package com.example.andriginting.footballmatch.db
 
 
-class FootballDB(val id: Long?,
-                 val matchId: String?,
-                 val league: String?,
-                 val homeTeamId: String?,
-                 val homeTeamName: String?,
-                 val homeGoals: String?,
-                 val homeTotalShots: String?,
-                 val homeYellowCard: String?,
-                 val homeRedCard: String?,
-                 val awayTeamId: String?,
-                 val awayTeamName: String?,
-                 val awayGoals: String?,
-                 val awayTotalShots: String?,
-                 val awayYellowCard: String?,
-                 val awayRedCard: String?,
-                 val dateMatch: String?,
-                 val banner: String?) {
+class FootballMatchDB(val id: Long?,
+                      val matchId: String?,
+                      val league: String?,
+                      val homeTeamId: String?,
+                      val homeTeamName: String?,
+                      val homeGoals: String?,
+                      val homeTotalShots: String?,
+                      val homeYellowCard: String?,
+                      val homeRedCard: String?,
+                      val awayTeamId: String?,
+                      val awayTeamName: String?,
+                      val awayGoals: String?,
+                      val awayTotalShots: String?,
+                      val awayYellowCard: String?,
+                      val awayRedCard: String?,
+                      val dateMatch: String?,
+                      val banner: String?) {
 
     companion object {
         const val TABLE_MATCH_NAME: String = "TABLE_MATCH_FAVORITE"

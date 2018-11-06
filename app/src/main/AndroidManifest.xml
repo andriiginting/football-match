@@ -36,6 +36,14 @@
         <activity
             android:name=".view.match.detail.DetailMatchActivity"
             android:label="@string/title_activity_detail_match"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.detail.teamdetail.TeamDetailActivity"
+            android:label="@string/title_activity_team_detail"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.detail.player.PlayerActivity"
+            android:label="@string/title_activity_player"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

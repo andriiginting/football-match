@@ -14,8 +14,8 @@ interface DetailMatchContract {
         fun changeFavIcon(menu: Menu?)
     }
     interface Presenter{
-        fun getHomeBadge(homeTeamId: String)
-        fun getAwayBadge(awayTeamId: String)
+        fun getHomeBadge(homeTeamId: Int)
+        fun getAwayBadge(awayTeamId: Int)
         fun saveMatchToDB(data: PrevMatchModel)
         fun removeMatchFromDB(data: PrevMatchModel)
         fun favMatchState(data: PrevMatchModel): Boolean
