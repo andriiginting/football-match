@@ -1,6 +1,7 @@
 package com.example.andriginting.footballmatch.utils
 
-import android.widget.SearchView
+
+import android.support.v7.widget.SearchView
 import rx.Observable
 import rx.subjects.PublishSubject
 

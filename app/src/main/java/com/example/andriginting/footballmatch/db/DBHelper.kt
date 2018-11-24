@@ -19,6 +19,7 @@ import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH
 import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH_DATE
 import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH_ID
 import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH_LEAGUE
+import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.MATCH_TIME
 import com.example.andriginting.footballmatch.db.FootballMatchDB.Companion.TABLE_MATCH_NAME
 import com.example.andriginting.footballmatch.db.FootballTeamDB.Companion.TABLE_TEAM_NAME
 import com.example.andriginting.footballmatch.db.FootballTeamDB.Companion.TEAMS_DESCRIPTIONS
@@ -31,7 +32,7 @@ import com.example.andriginting.footballmatch.db.FootballTeamDB.Companion._ID
 import org.jetbrains.anko.db.*
 
 class DBHelper(context: Context):
-        ManagedSQLiteOpenHelper(context,"football_fav.db",null,1) {
+        ManagedSQLiteOpenHelper(context,"football_match_fav.db",null,1) {
 
     companion object {
         private var instance: DBHelper? = null
@@ -64,6 +65,7 @@ class DBHelper(context: Context):
                 AWAY_YELLOW_CARD to TEXT,
                 AWAY_RED_CARD to TEXT,
                 MATCH_DATE to TEXT,
+                MATCH_TIME to TEXT,
                 MATCH_BANNER to TEXT)
 
         db?.createTable(TABLE_TEAM_NAME, true,

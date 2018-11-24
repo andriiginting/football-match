@@ -22,7 +22,6 @@ class NetworkModule {
                     .connectTimeout(1, TimeUnit.MINUTES)
                     .build()
 
-
             retrofit = Retrofit.Builder()
                     .baseUrl(BuildConfig.FOOTBALL_BASE_URL)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -33,13 +32,11 @@ class NetworkModule {
         return retrofit
     }
 
-
     private fun createLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
     }
-
 
     @Throws(IOException::class)
     private fun defaultHTTPClient(): Interceptor {

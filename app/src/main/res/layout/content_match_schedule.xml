@@ -28,6 +28,4 @@
         android:layout_alignParentBottom="true"
         app:itemBackground="@drawable/bottom_bar_divider"
         app:menu="@menu/menu_main" />
-
-
 </RelativeLayout>

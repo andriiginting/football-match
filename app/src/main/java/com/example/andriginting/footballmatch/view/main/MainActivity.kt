@@ -1,4 +1,4 @@
-package com.example.andriginting.footballmatch.view.Main
+package com.example.andriginting.footballmatch.view.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

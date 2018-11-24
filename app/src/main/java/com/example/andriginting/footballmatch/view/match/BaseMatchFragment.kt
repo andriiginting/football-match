@@ -1,19 +1,19 @@
 package com.example.andriginting.footballmatch.view.match
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 
-import android.support.design.widget.TabLayout;
+import android.support.design.widget.TabLayout
+import android.view.*
 
 import com.example.andriginting.footballmatch.R
 import com.example.andriginting.footballmatch.adapter.ViewPagerAdapter
 import com.example.andriginting.footballmatch.view.match.next.NextMatchFragment
 import com.example.andriginting.footballmatch.view.match.prev.PrevMatchFragment
+import com.example.andriginting.footballmatch.view.match.result.ResultActivity
 
 class BaseMatchFragment : Fragment(), BasePagerView {
 
@@ -32,6 +32,7 @@ class BaseMatchFragment : Fragment(), BasePagerView {
         pagerAdapter = ViewPagerAdapter(childFragmentManager)
         setupViewPager(pager)
         tabs.setupWithViewPager(pager)
+        setHasOptionsMenu(true)
         return view
     }
 
@@ -40,5 +41,21 @@ class BaseMatchFragment : Fragment(), BasePagerView {
         pagerAdapter.addFragment(NextMatchFragment(),"Next Match")
         pager.adapter = pagerAdapter
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu_search_item,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            R.id.search_menu -> {
+                val intent = Intent(context, ResultActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return true
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.andriginting.footballmatch.view.Main
+package com.example.andriginting.footballmatch.view.main
 
 import android.content.Context
 import com.example.andriginting.footballmatch.R

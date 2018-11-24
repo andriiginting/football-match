@@ -1,4 +1,4 @@
-package com.example.andriginting.footballmatch.view.Main.component
+package com.example.andriginting.footballmatch.view.main.component
 
 import android.view.Gravity
 import android.view.ViewGroup

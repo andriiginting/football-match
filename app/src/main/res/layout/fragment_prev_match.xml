@@ -5,12 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".view.match.prev.PrevMatchFragment">
 
+    <Spinner
+        android:id="@+id/spinner_prev_match"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_past_match"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="0dp"
+        android:layout_below="@id/spinner_prev_match"/>
 
     <ProgressBar
         android:id="@+id/progress_bar_prev_match"

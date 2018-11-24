@@ -20,7 +20,7 @@ interface TeamContract {
     }
     interface Presenter{
         fun getListOfTeam(teamId: Int, list: ArrayList<TeamModel>): ArrayList<TeamModel>
-        fun searchTeam(teamName: String, list: ArrayList<TeamModel>): Single<Response<TeamResponse>>?
+        fun searchTeam(teamName: String): Single<Response<TeamResponse>>?
         fun getListOfLeagueTeam(list: ArrayList<LeagueModel>): List<LeagueModel>
         fun getSearchObserver(): DisposableObserver<Response<TeamResponse>>
     }

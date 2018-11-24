@@ -60,6 +60,7 @@ class FavoriteMatchAdapter(private val list: ArrayList<FootballMatchDB>,
                             data.awayTotalShots.toString(), data.awayYellowCard.toString(),
                             data.awayRedCard.toString()),
                     data.dateMatch.toString(),
+                    data.timeMatch.toString(),
                     data.banner.toString())
 
             items.setOnClickListener {

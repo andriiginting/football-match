@@ -8,31 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.andriginting.footballmatch.R
-import com.example.andriginting.footballmatch.model.PrevMatchModel
+import com.example.andriginting.footballmatch.model.MatchResponse
 import com.example.andriginting.footballmatch.utils.DateFormater
-import com.example.andriginting.footballmatch.utils.DateFormater.Companion.timeFormatter
 import com.example.andriginting.footballmatch.view.match.detail.DetailMatchActivity
-import com.example.andriginting.footballmatch.view.match.detail.DetailMatchActivity.Companion.DETAIL_MATCH
 import org.jetbrains.anko.intentFor
 
-class PreviousMatchAdapter(private val list: ArrayList<PrevMatchModel>,
-                           private val context: Context) :
-        RecyclerView.Adapter<PreviousMatchAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, pos: Int): ViewHolder {
+class SearchAdapter(val list: List<MatchResponse>,
+                    val context: Context): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.previous_match_item, parent, false)
         return ViewHolder(view = view)
     }
 
     override fun getItemCount(): Int = list.size
 
-    override fun getItemViewType(position: Int): Int = position
-
     override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
         holder.bindData(list[pos])
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private var scoreHome: TextView = itemView.findViewById(R.id.text_score_home)
         private var scoreAway: TextView = itemView.findViewById(R.id.text_score_away)
         private var clubNameHome: TextView = itemView.findViewById(R.id.text_club_name_home)
@@ -42,18 +36,15 @@ class PreviousMatchAdapter(private val list: ArrayList<PrevMatchModel>,
         private var items: CardView = itemView.findViewById(R.id.item_club_match)
 
 
-        fun bindData(data: PrevMatchModel) {
-            scoreHome.text = data.homeStat.goals?.toString() ?: ""
-            scoreAway.text = data.awayStat.goals?.toString() ?: ""
-            clubNameHome.text = data.homeTeam.teamName
-            clubNameAway.text = data.awayTeam.teamName
-            matchDate.text = DateFormater.dateFormater(data.dateMatch) ?: ""
-            matchTime.text = timeFormatter(data.matchTime) ?: ""
+        fun bindData(data: MatchResponse) {
+            scoreHome.text = data.intHomeScore.toString()
+            scoreAway.text = data.intAwayScore.toString()
+            clubNameHome.text = data.strHomeTeam
+            clubNameAway.text = data.strAwayTeam
 
             items.setOnClickListener {
-                itemView.context.startActivity(itemView.context.intentFor<DetailMatchActivity>(DETAIL_MATCH to data))
+                itemView.context.startActivity(itemView.context.intentFor<DetailMatchActivity>(DetailMatchActivity.DETAIL_MATCH to data))
             }
         }
     }
-
 }

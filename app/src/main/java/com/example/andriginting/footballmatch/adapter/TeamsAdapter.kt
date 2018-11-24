@@ -23,6 +23,8 @@ class TeamsAdapter(private val list: ArrayList<TeamModel>) : RecyclerView.Adapte
 
     override fun getItemCount(): Int = list.size
 
+    override fun getItemViewType(position: Int): Int = position
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindData(list[position])
     }

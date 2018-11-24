@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.andriginting.footballmatch.model.MatchStat
 import com.example.andriginting.footballmatch.model.PrevMatchModel
 import com.example.andriginting.footballmatch.model.Team
+import com.example.andriginting.footballmatch.model.league.LeagueModel
 import com.example.andriginting.footballmatch.network.NetworkInterface
 import com.example.andriginting.footballmatch.network.NetworkModule
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -42,6 +43,7 @@ class ImpNextPresenter(private val view: NextContract.View,
                                                 yellowCard = res[items].strAwayYellowCards.toString(),
                                                 redCard = res[items].strAwayRedCards.toString()),
                                         res[items].dateEvent.toString(),
+                                        res[items].strTime.toString(),
                                         res[items].strThumb.toString()))
                                 view.showFootBallSchedule(list)
                                 Log.d("looping", res[items].strBanner.toString())
@@ -58,5 +60,28 @@ class ImpNextPresenter(private val view: NextContract.View,
                     }
                 })
         Log.d("hasilnya", list.toString())
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getListOfLeague(list: ArrayList<LeagueModel>): List<LeagueModel> {
+        request?.getAllListOfLeague()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe({ response ->
+                    val result = response.body()?.listLeague
+                    when {
+                        response.isSuccessful -> {
+                            for (items in result!!.indices) {
+                                list.add(LeagueModel(result[items].leagueId.toString(),
+                                        result[items].leagueName.toString()))
+                                view.setSpinnerData(list[items].leagueName)
+                            }
+                        }
+                    }
+
+                }, { error ->
+                    error.localizedMessage
+                })
+        return list
     }
 }

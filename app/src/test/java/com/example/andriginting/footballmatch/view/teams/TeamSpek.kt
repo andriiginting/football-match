@@ -1,8 +1,8 @@
-package com.example.andriginting.footballmatch.match
+package com.example.andriginting.footballmatch.view.teams
 
 
 import com.example.andriginting.footballmatch.model.teams.TeamModel
-import com.example.andriginting.footballmatch.view.teams.TeamContract
+import io.reactivex.Single
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it
@@ -13,7 +13,7 @@ import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class MatchSpek: Spek({
+class TeamSpek: Spek({
     given("Team in league"){
 
         beforeEachTest {
@@ -37,7 +37,7 @@ class MatchSpek: Spek({
             }
 
             it("should return team data"){
-                model?.let { verify(view)?.populateTeamData(it) }
+                model?.let { listTeam?.let { it1 -> verify(view)?.populateTeamData(it1) } }
             }
 
         }

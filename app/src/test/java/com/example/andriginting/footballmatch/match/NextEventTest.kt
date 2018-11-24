@@ -29,11 +29,11 @@ class NextEventTest : Spek({
         on("Next match presenter") {
             it("should return data") {
                 doNothing().`when`(presenter).getMatchDetail(4335)
-
             }
             it("should return null"){
-                `when`(presenter.getMatchDetail(ArgumentMatchers.nullable(Int::class.java))).getMock()
-
+                doAnswer {
+                    return@doAnswer null
+                }.`when`(presenter).getMatchDetail(ArgumentMatchers.nullable(Int::class.java))
             }
         }
     }

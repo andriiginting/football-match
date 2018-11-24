@@ -27,13 +27,11 @@ class PrevEventTest {
         model = Mockito.mock(PrevMatchModel::class.java)
         nextView = Mockito.mock(PrevContract.View::class.java)
         list = ArrayList()
-        presenter = ImpPreviousPresenter(view = nextView, list = list)
+        presenter = ImpPreviousPresenter(view = nextView)
     }
 
     @Test
     fun getNextMatchDetailSpec_hasNoData() {
-        `when`(presenter.getMatchDetail(0)).thenReturn(null)
-
         Mockito.verify(nextView).showLoadingIndicator()
         Mockito.verify(nextView).showFootBallSchedule(list)
         Mockito.verify(nextView).hidLoadingIndicator()

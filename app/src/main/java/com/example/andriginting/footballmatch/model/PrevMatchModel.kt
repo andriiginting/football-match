@@ -11,6 +11,7 @@ data class PrevMatchModel(val matchId: String,
                           val awayTeam: Team,
                           val awayStat: MatchStat,
                           val dateMatch: String,
+                          val matchTime: String,
                           val banner: String) : Parcelable
 
 @Parcelize

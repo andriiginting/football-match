@@ -17,6 +17,7 @@ class FootballMatchDB(val id: Long?,
                       val awayYellowCard: String?,
                       val awayRedCard: String?,
                       val dateMatch: String?,
+                      val timeMatch: String?,
                       val banner: String?) {
 
     companion object {
@@ -37,6 +38,7 @@ class FootballMatchDB(val id: Long?,
         const val AWAY_YELLOW_CARD: String = "AWAY_YELLOW_CARD"
         const val AWAY_RED_CARD: String = "AWAY_RED_CARD"
         const val MATCH_DATE: String = "MATCH_DATE"
+        const val MATCH_TIME: String = "MATCH_TIME"
         const val MATCH_BANNER: String = "MATCH_BANNER"
     }
 }

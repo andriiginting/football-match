@@ -8,7 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.*
-
+import android.support.v7.widget.SearchView
 import com.example.andriginting.footballmatch.R
 import com.example.andriginting.footballmatch.adapter.TeamsAdapter
 import com.example.andriginting.footballmatch.extension.invisible
@@ -19,9 +19,7 @@ import com.example.andriginting.footballmatch.model.teams.TeamResponse
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.Single
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Function
-import org.jetbrains.anko.support.v4.toast
 import retrofit2.Response
 
 import java.util.concurrent.TimeUnit
@@ -55,8 +53,8 @@ class TeamFragment : Fragment(), TeamContract.View {
         presenter.getListOfLeagueTeam(listLeague)
         teamAdapter = TeamsAdapter(listTeam)
 
-        setupSpinner()
         setupComponent()
+        setupSpinner()
         setHasOptionsMenu(true)
         return view
     }
@@ -74,12 +72,12 @@ class TeamFragment : Fragment(), TeamContract.View {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String?): Boolean {
                     subscriber.onNext(newText!!)
-                    return true
+                    return false
                 }
 
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     subscriber.onNext(query!!)
-                    return true
+                    return false
                 }
             })
         })
@@ -87,8 +85,9 @@ class TeamFragment : Fragment(), TeamContract.View {
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
                 .filter { text -> text.isNotBlank() }
-                .switchMapSingle(Function<String, Single<Response<TeamResponse>>> {
-                    return@Function presenter.searchTeam(it, listTeam)
+                .switchMapSingle(Function<String, Single<Response<TeamResponse>>> {query ->
+                    listTeam.clear()
+                    return@Function presenter.searchTeam(query)
                 })
                 .subscribeWith(presenter.getSearchObserver())
 
@@ -98,24 +97,21 @@ class TeamFragment : Fragment(), TeamContract.View {
         val adapter: ArrayAdapter<String> = ArrayAdapter(activity!!.baseContext,
                 android.R.layout.simple_spinner_item, listLeagueName)
         spinnerLeague.adapter = adapter
+        adapter.add("Choose league")
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        adapter.addAll("Choose League")
         spinnerLeague.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val items = parent?.selectedItem.toString()
-                listTeam.clear()
                 if (position != 0) {
+                    listTeam.clear()
                     presenter.getListOfTeam(listLeague[position - 1].leagueId.toInt(), listTeam)
                     teamAdapter?.notifyDataSetChanged()
                 }
-                toast("$items $position")
             }
         }
-        adapter.notifyDataSetChanged()
     }
 
     override fun setupComponent() {

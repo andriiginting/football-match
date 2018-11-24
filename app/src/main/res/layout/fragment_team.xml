@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_team_layout"
-        android:layout_below="@id/spinner_team"/>
+        android:layout_below="@id/spinner_team"
+        android:layout_marginTop="@dimen/margin_standard_10"/>
 
     <ProgressBar
         android:id="@+id/progress_bar_teams"

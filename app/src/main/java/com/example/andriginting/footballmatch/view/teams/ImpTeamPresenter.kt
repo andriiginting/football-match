@@ -21,6 +21,7 @@ class ImpTeamPresenter(val view: TeamContract.View) : TeamContract.Presenter {
     @SuppressLint("CheckResult")
     override fun getListOfTeam(teamId: Int,
                                list: ArrayList<TeamModel>): ArrayList<TeamModel> {
+        view.showLoadingIndicator()
         request?.getDetailTeam(teamId)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
@@ -72,7 +73,7 @@ class ImpTeamPresenter(val view: TeamContract.View) : TeamContract.Presenter {
     }
 
     @SuppressLint("CheckResult")
-    override fun searchTeam(teamName: String, list: ArrayList<TeamModel>): Single<Response<TeamResponse>>? {
+    override fun searchTeam(teamName: String): Single<Response<TeamResponse>>? {
         return request?.searchTeamByName(teamName)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())

@@ -19,7 +19,6 @@ class DetailTeamResponse {
     @SerializedName("strStadium")
     var teamStadium: String? = null
 
-
     @SerializedName("intFormedYear")
     var teamFormed: String? = null
 
