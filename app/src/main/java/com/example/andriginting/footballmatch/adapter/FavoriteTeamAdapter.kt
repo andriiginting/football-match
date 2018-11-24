@@ -1,6 +1,7 @@
 package com.example.andriginting.footballmatch.adapter
 
 import android.content.Intent
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +31,7 @@ class FavoriteTeamAdapter(private val list: ArrayList<FootballTeamDB>) : Recycle
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         private val image: ImageView = itemView.findViewById(R.id.image_team_logo)
         private val teamName: TextView = itemView.findViewById(R.id.text_teams_name)
-        private val listTeam: LinearLayout = itemView.findViewById(R.id.list_team)
+        private val listTeam: CardView = itemView.findViewById(R.id.list_team)
 
         fun bindData(data: FootballTeamDB) {
             Glide.with(itemView.context)

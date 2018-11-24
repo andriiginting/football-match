@@ -28,6 +28,6 @@ class PlayerResponse {
     @SerializedName("strDescriptionEN")
     var playerDetail: String? = null
 
-    @SerializedName("strFanart2")
+    @SerializedName("strFanart1")
     var playerBanner: String? = null
 }

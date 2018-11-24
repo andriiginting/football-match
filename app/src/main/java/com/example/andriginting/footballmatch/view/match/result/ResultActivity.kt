@@ -95,7 +95,7 @@ class ResultActivity : AppCompatActivity(), ResultContract.View{
             })
         })
                 .map { text -> text.toLowerCase().trim() }
-                .debounce(300, TimeUnit.MILLISECONDS)
+                .debounce(400, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
                 .filter { text -> text.isNotBlank() }
                 .switchMapSingle(Function<String, Single<Response<SearchLeagueResponse>>> { query ->
