@@ -26,7 +26,9 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         val data = intent.getParcelableExtra<ClubModel>(DETAIL_CLUB)
         setToolbarTitle(data.clubName)
 
-        Glide.with(this).load(data.clubLogo).into(detail_club_logo)
+        Glide.with(this)
+                .load(data.clubLogo)
+                .into(detail_club_logo)
         detail_description_club.text = data.clubDetail
     }
 

@@ -19,7 +19,7 @@ interface NetworkInterface {
     @GET("eventsnextleague.php")
     fun getNextMatch(@Query("id") leagueId: Int): Observable<Response<LeagueResponse>>
 
-    @GET("lookup_all_teams.php")
+    @GET("lookupteam.php")
     fun getDetailTeam(@Query("id") teamId: Int): Observable<Response<TeamResponse>>
 
     @GET("all_leagues.php")

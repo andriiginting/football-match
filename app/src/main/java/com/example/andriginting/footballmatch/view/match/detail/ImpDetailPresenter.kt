@@ -50,8 +50,10 @@ class ImpDetailPresenter(private val view: DetailMatchContract.View,
                     val team = it.body()?.teams?.get(0)
                     when {
                         it.isSuccessful -> {
-                            team?.teamBadge?.let { response -> view.setHomeClubLogo(response) }
-                            Log.d("badge-club", team?.teamBadge.toString())
+                            team?.teamBadge?.let {
+                                response -> view.setHomeClubLogo(response)
+                            }
+                            Log.d("badge-club", team.toString())
                         }
                     }
                 }, { error ->
