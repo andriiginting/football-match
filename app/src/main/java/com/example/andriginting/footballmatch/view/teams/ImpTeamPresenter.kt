@@ -22,7 +22,7 @@ class ImpTeamPresenter(val view: TeamContract.View) : TeamContract.Presenter {
     override fun getListOfTeam(teamId: Int,
                                list: ArrayList<TeamModel>): ArrayList<TeamModel> {
         view.showLoadingIndicator()
-        request?.getDetailTeam(teamId)
+        request?.getDetailTeams(teamId)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribe({ response ->
